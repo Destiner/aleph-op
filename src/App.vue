@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <AlephHeader />
     <router-view />
   </div>
 </template>
@@ -10,6 +11,7 @@ import '@fontsource/inter/400.css';
 import '@fontsource/inter/700.css';
 import { computed, onMounted } from 'vue';
 
+import AlephHeader from '@/components/_app/AlephHeader.vue';
 import config from '@/config';
 
 const styleProperties = computed<Record<string, string>>(() => {
