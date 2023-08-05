@@ -75,6 +75,11 @@ body {
   font-family: var(--font-sans);
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 /* Reset */
 
 *,
