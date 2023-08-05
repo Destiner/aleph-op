@@ -4,9 +4,15 @@
   </div>
 </template>
 
+<script setup lang="ts">
+import '@fontsource/inter/200.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/700.css';
+</script>
+
 <style>
 :root {
-  --font-sans: -apple-system, 'BlinkMacSystemFont', avenir next, avenir,
+  --font-sans: 'Inter', -apple-system, 'BlinkMacSystemFont', avenir next, avenir,
     segoe ui, helvetica neue, helvetica, 'Ubuntu', roboto, noto, arial,
     sans-serif;
   --font-serif: 'Iowan Old Style', 'Apple Garamond', 'Baskerville',
