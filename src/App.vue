@@ -71,6 +71,7 @@ onMounted(() => {
 }
 
 body {
+  margin: 0;
   font-family: var(--font-sans);
 }
 
