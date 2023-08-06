@@ -25,7 +25,7 @@
   gap: 0;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .page {
     flex-direction: row;
   }
@@ -38,7 +38,7 @@
   border-right: 1px solid var(--color-border-primary);
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .sidebar-toc {
     min-width: 320px;
   }
