@@ -8,7 +8,7 @@
         />
         <div class="heading">
           <div class="heading-title">{{ config.meta.title }}</div>
-          <div class="heading-subtitle">Reference</div>
+          <div class="heading-subtitle">Developer Platform</div>
         </div>
       </div>
     </div>
