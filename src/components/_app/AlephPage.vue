@@ -32,7 +32,6 @@
 }
 
 .sidebar-toc {
-  display: flex;
   flex: 1;
   padding: 15px 20px 20px;
   border-right: 1px solid var(--color-border-primary);
@@ -45,13 +44,11 @@
 }
 
 .main {
-  display: flex;
   flex: 3;
   padding: 30px;
 }
 
 .sidebar-outline:has(*) {
-  display: flex;
   flex: 2;
   padding: 30px 20px 10px;
   transition: all 0.2s ease-in-out;
@@ -63,7 +60,6 @@
 }
 
 .sidebar-details:has(*) {
-  display: flex;
   flex: 2;
   padding: 30px 20px 10px;
   border-right: 1px solid var(--color-border-primary);
