@@ -1,3 +1,9 @@
+interface ImportMeta {
+  env: {
+    VITE_PROVIDER_KEY?: string;
+  };
+}
+
 declare module '*.vue' {
   import { ComponentOptions } from 'vue';
 
