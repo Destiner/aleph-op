@@ -16,6 +16,13 @@ defineProps<{
 </script>
 
 <style scoped>
+.view {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+  gap: 8px;
+}
+
 .view :deep(p) {
   margin: 0;
 }
