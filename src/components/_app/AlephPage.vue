@@ -46,6 +46,7 @@
 .main {
   flex: 3;
   padding: 30px;
+  overflow-y: auto;
 }
 
 .sidebar-outline:has(*) {
