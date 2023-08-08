@@ -11,7 +11,10 @@
       <MarkdownView :source="activeDoc.content" />
     </div>
     <template #outline>
-      <h3>outline</h3>
+      <ContentOutline
+        :sections="contentSections"
+        :active="activeContentSection"
+      />
     </template>
   </AlephPage>
 </template>
@@ -20,6 +23,9 @@
 import { computed } from 'vue';
 
 import MarkdownView from '@/components/__common/MarkdownView.vue';
+import ContentOutline, {
+  Section as ContentSection,
+} from '@/components/__common/nav/ContentOutline.vue';
 import TableOfContents, {
   Section,
 } from '@/components/__common/nav/TableOfContents.vue';
@@ -219,6 +225,55 @@ const address = predeploys.CONTRACT_NAME_GOES_HERE
     ],
   },
 ];
+
+const contentSections = computed<ContentSection[]>(() => [
+  {
+    title: 'Finding contract addresses',
+    path: sluggify('Finding contract addresses'),
+    items: [],
+  },
+  {
+    title: 'Interacting from another contract',
+    path: sluggify('Interacting from another contract'),
+    items: [
+      {
+        title: 'Installing via NPM or Yarn',
+        path: sluggify('Installing via NPM or Yarn'),
+      },
+      {
+        title: 'Importing contracts',
+        path: sluggify('Importing contracts'),
+      },
+      {
+        title: 'Getting L2 contract addresses',
+        path: sluggify('Getting L2 contract addresses'),
+      },
+    ],
+  },
+  {
+    title: 'Interacting from the client side',
+    path: sluggify('Interacting from the client side'),
+    items: [
+      {
+        title: 'Installing via NPM or Yarn',
+        path: sluggify('Installing via NPM or Yarn'),
+      },
+      {
+        title: 'Getting contract artifacts, interfaces, and ABIs',
+        path: sluggify('Getting contract artifacts, interfaces, and ABIs'),
+      },
+      {
+        title: 'Getting L2 contract addresses',
+        path: sluggify('Getting L2 contract addresses'),
+      },
+    ],
+  },
+]);
+
+const activeContentSection = computed(() => ({
+  sectionIndex: 0,
+  pageIndex: 1,
+}));
 </script>
 
 <style scoped>
