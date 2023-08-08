@@ -63,6 +63,6 @@
 .sidebar-details:has(*) {
   flex: 2;
   padding: 30px 20px 10px;
-  border-right: 1px solid var(--color-border-primary);
+  border-left: 1px solid var(--color-border-primary);
 }
 </style>
