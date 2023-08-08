@@ -27,6 +27,7 @@
     "@types/markdown-it": "^12.2.3",
     "@vueuse/core": "^10.3.0",
     "markdown-it": "^13.0.1",
+    "pinia": "^2.1.6",
     "viem": "^1.5.3",
     "vue": "3.3.4",
     "vue-router": "4.2.4"
