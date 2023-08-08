@@ -67,6 +67,12 @@
       "rules": {
         "vue/multi-word-component-names": "off"
       }
+    },
+    {
+      "files": ["src/components/__common/MarkdownView.vue"],
+      "rules": {
+        "vue/no-v-html": "off"
+      }
     }
   ]
 }
