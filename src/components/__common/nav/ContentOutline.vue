@@ -11,11 +11,6 @@
           v-for="(item, itemIndex) in section.items"
           :key="itemIndex"
           class="item"
-          :class="{
-            active:
-              active.sectionIndex === sectionIndex &&
-              active.itemIndex === itemIndex,
-          }"
         >
           {{ item.title }}
         </div>
@@ -27,16 +22,10 @@
 <script setup lang="ts">
 defineProps<{
   sections: Section[];
-  active: Selection;
 }>();
 </script>
 
 <script lang="ts">
-interface Selection {
-  sectionIndex: number;
-  itemIndex: number;
-}
-
 interface Section {
   title: string;
   path: string;

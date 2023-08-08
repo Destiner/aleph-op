@@ -11,10 +11,7 @@
       <MarkdownView :source="activeDoc.content" />
     </div>
     <template #outline>
-      <ContentOutline
-        :sections="contentSections"
-        :active="activeContentSection"
-      />
+      <ContentOutline :sections="contentSections" />
     </template>
   </AlephPage>
 </template>
@@ -269,11 +266,6 @@ const contentSections = computed<ContentSection[]>(() => [
     ],
   },
 ]);
-
-const activeContentSection = computed(() => ({
-  sectionIndex: 0,
-  pageIndex: 1,
-}));
 </script>
 
 <style scoped>
