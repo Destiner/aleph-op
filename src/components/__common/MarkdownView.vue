@@ -39,6 +39,12 @@ defineProps<{
   background: var(--color-bg-tertiary);
 }
 
+.view :deep(pre code) {
+  display: flex;
+  padding: 4px;
+  overflow-x: auto;
+}
+
 .view :deep(blockquote) {
   margin: 16px 0;
   padding: 8px;
