@@ -8,6 +8,7 @@ import Contracts from './pages/Contracts.vue';
 import Cookbook from './pages/Cookbook.vue';
 import Docs from './pages/Docs.vue';
 import JsonRpc from './pages/JsonRpc.vue';
+import Tooling from './pages/Tooling.vue';
 
 const routerHistory = createWebHistory();
 const router = createRouter({
@@ -18,6 +19,7 @@ const router = createRouter({
     { path: '/cookbook', component: Cookbook },
     { path: '/json-rpc', component: JsonRpc },
     { path: '/contracts', component: Contracts },
+    { path: '/tooling', component: Tooling },
   ],
 });
 
