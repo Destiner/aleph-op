@@ -17,8 +17,8 @@
         <router-link to="/docs">
           <IconBook class="nav-icon" /> Docs
         </router-link>
-        <router-link to="/guides">
-          <IconLibrary class="nav-icon" /> Guides
+        <router-link to="/cookbook">
+          <IconChef class="nav-icon" /> Cookbook
         </router-link>
         <router-link to="/json-rpc">
           <IconFileJson class="nav-icon" /> JSON-RPC
@@ -46,11 +46,11 @@
 <script setup lang="ts">
 import IconAtom from '@/components/__common/icon/Atom.vue';
 import IconBook from '@/components/__common/icon/Book.vue';
+import IconChef from '@/components/__common/icon/Chef.vue';
 import IconDrop from '@/components/__common/icon/Drop.vue';
 import IconFileCode from '@/components/__common/icon/FileCode.vue';
 import IconFileJson from '@/components/__common/icon/FileJson.vue';
 import IconHammer from '@/components/__common/icon/Hammer.vue';
-import IconLibrary from '@/components/__common/icon/Library.vue';
 import IconLink from '@/components/__common/icon/Link.vue';
 import config from '@/config';
 import logoSvg from '@/config/logo.svg';
