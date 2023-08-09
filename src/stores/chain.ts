@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
-import { ETHEREUM, Chain } from '@/utils/chains';
+import { OPTIMISM, Chain } from '@/utils/chains';
 
 const useStore = defineStore('chain', () => {
-  const id = ref<Chain>(ETHEREUM);
+  const id = ref<Chain>(OPTIMISM);
 
   function setId(newId: Chain): void {
     id.value = newId;
