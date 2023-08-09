@@ -48,6 +48,7 @@
 
 <script setup lang="ts">
 import { useBreakpoints, useUrlSearchParams } from '@vueuse/core';
+import { useHead } from '@vueuse/head';
 import { onMounted, ref, watch } from 'vue';
 
 import AlephModal from '@/components/__common/AlephModal.vue';
@@ -57,10 +58,15 @@ import MethodEditor from '@/components/jsonRpc/MethodEditor.vue';
 import MethodExecution from '@/components/jsonRpc/MethodExecution.vue';
 import MethodList from '@/components/jsonRpc/MethodList.vue';
 import useMethods from '@/composables/jsonRpc/useMethods';
+import config from '@/config';
 import { Method, Param, getArrayParamItem } from '@/utils/jsonRpc/methods';
 
 const breakpoints = useBreakpoints({
   tablet: 640,
+});
+const { meta } = config;
+useHead({
+  title: `JSON-RPC | ${meta.title}`,
 });
 const isPhone = breakpoints.smaller('tablet');
 const params = useUrlSearchParams('history');

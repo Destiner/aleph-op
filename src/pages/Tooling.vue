@@ -23,15 +23,21 @@
 </template>
 
 <script setup lang="ts">
+import { useHead } from '@vueuse/head';
 import { computed, ref } from 'vue';
 
 import AlephCardFeature from '@/components/__common/AlephCardFeature.vue';
 import AlephChipRadio from '@/components/__common/AlephChipRadio.vue';
 import AlephPage from '@/components/_app/AlephPage.vue';
 import useTools from '@/composables/tooling/useTools';
+import config from '@/config';
 import { Category } from '@/utils/tooling';
 import { formatCategory } from '@/utils/tooling/formatting';
 
+const { meta } = config;
+useHead({
+  title: `Tooling | ${meta.title}`,
+});
 const { tools } = useTools();
 
 const categories = computed<Category[]>(() => {

@@ -17,6 +17,7 @@
 </template>
 
 <script setup lang="ts">
+import { useHead } from '@vueuse/head';
 import { computed } from 'vue';
 
 import MarkdownView from '@/components/__common/MarkdownView.vue';
@@ -27,6 +28,7 @@ import TableOfContents, {
   Section,
 } from '@/components/__common/nav/TableOfContents.vue';
 import AlephPage from '@/components/_app/AlephPage.vue';
+import config from '@/config';
 import { sluggify } from '@/utils/formatting';
 
 interface DocSection {
@@ -38,6 +40,11 @@ interface Doc {
   title: string;
   content: string;
 }
+
+const { meta } = config;
+useHead({
+  title: `Docs | ${meta.title}`,
+});
 
 const sections = computed<Section[]>(() =>
   docs.map((doc) => ({
