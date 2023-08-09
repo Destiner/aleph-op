@@ -31,14 +31,14 @@
   }
 }
 
-.sidebar-toc {
+.sidebar-toc:has(*) {
   flex: 1;
   padding: 15px 20px 20px;
   border-right: 1px solid var(--color-border-primary);
 }
 
 @media (width >= 768px) {
-  .sidebar-toc {
+  .sidebar-toc:has(*) {
     min-width: 320px;
   }
 }
