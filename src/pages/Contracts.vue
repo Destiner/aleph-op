@@ -1,28 +1,26 @@
 <template>
   <AlephPage>
     <template #toc>
-      <nav>
-        <NavSidebarModal
-          v-if="isPhone"
-          :active-contract="activeContract"
-          :is-open="isSidebarModalOpen"
-          @close="handleSidebarModalClose"
-          @select="handleContractSelect"
-        />
-        <NavSidebar
-          v-else
-          :active-contract="activeContract"
-          @select="handleContractSelect"
-        />
-        <div
-          v-if="isPhone"
-          class="trigger-button"
-          @click="openSidebarModal"
-        >
-          Click to select…
-          <IconChevronDown class="dropdown-icon" />
-        </div>
-      </nav>
+      <NavSidebarModal
+        v-if="isPhone"
+        :active-contract="activeContract"
+        :is-open="isSidebarModalOpen"
+        @close="handleSidebarModalClose"
+        @select="handleContractSelect"
+      />
+      <NavSidebar
+        v-else
+        :active-contract="activeContract"
+        @select="handleContractSelect"
+      />
+      <div
+        v-if="isPhone"
+        class="trigger-button"
+        @click="openSidebarModal"
+      >
+        Click to select…
+        <IconChevronDown class="dropdown-icon" />
+      </div>
     </template>
     <article class="editor">
       <EditorPanel
