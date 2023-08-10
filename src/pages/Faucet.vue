@@ -147,6 +147,7 @@ function isEns(address: string): boolean {
 
 .input-wrapper {
   display: flex;
+  gap: var(--spacing-small);
   flex-direction: column;
 }
 
