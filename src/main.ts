@@ -4,6 +4,7 @@ import { createApp } from 'vue';
 import { createWebHistory, createRouter } from 'vue-router';
 
 import App from './App.vue';
+import Bridge from './pages/Bridge.vue';
 import Contracts from './pages/Contracts.vue';
 import Cookbook from './pages/Cookbook.vue';
 import Docs from './pages/Docs.vue';
@@ -20,6 +21,7 @@ const router = createRouter({
     { path: '/json-rpc', component: JsonRpc },
     { path: '/contracts', component: Contracts },
     { path: '/tooling', component: Tooling },
+    { path: '/bridge', component: Bridge },
   ],
 });
 
