@@ -11,21 +11,17 @@
         />
         <div class="title">{{ title }}</div>
       </div>
-      <div
-        v-if="description"
-        class="description"
-      >
-        {{ description }}
-      </div>
+      <div class="cta">Learn more <ArrowUpRight class="cta-icon" /></div>
     </div>
   </a>
 </template>
 
 <script setup lang="ts">
+import ArrowUpRight from '@/components/__common/icon/ArrowUpRight.vue';
+
 defineProps<{
   imagePath: string;
   title: string;
-  description?: string;
   url?: string;
 }>();
 </script>
@@ -63,7 +59,19 @@ defineProps<{
   font-weight: 700;
 }
 
-.description {
+.cta {
+  display: flex;
+  align-items: center;
   font-size: var(--font-size-small);
+  gap: var(--spacing-small);
+}
+
+.card:hover .cta {
+  color: var(--color-accent);
+}
+
+.cta-icon {
+  width: 14px;
+  height: 14px;
 }
 </style>
