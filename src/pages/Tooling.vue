@@ -13,7 +13,6 @@
             class="tool"
             :image-path="tool.iconPath"
             :title="tool.name"
-            :description="tool.description"
             :url="tool.url"
           />
         </div>
