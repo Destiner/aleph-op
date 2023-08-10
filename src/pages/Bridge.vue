@@ -219,7 +219,7 @@ const isFormValid = computed(() => {
 }
 
 input {
-  width: calc(100% - 100px);
+  width: 100%;
   border: none;
   outline: none;
   background: transparent;
@@ -256,6 +256,7 @@ input {
   padding: 8px;
   border-radius: var(--border-radius-medium);
   background: var(--color-bg-secondary);
+  cursor: pointer;
 }
 
 .switch-button:hover {
@@ -266,7 +267,6 @@ input {
   width: 16px;
   height: 16px;
   opacity: 0.8;
-  cursor: pointer;
 }
 
 .icon:hover {
