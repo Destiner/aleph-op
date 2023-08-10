@@ -8,6 +8,7 @@ import Bridge from './pages/Bridge.vue';
 import Contracts from './pages/Contracts.vue';
 import Cookbook from './pages/Cookbook.vue';
 import Docs from './pages/Docs.vue';
+import Ecosystem from './pages/Ecosystem.vue';
 import Faucet from './pages/Faucet.vue';
 import JsonRpc from './pages/JsonRpc.vue';
 import Tooling from './pages/Tooling.vue';
@@ -24,6 +25,7 @@ const router = createRouter({
     { path: '/tooling', component: Tooling },
     { path: '/bridge', component: Bridge },
     { path: '/faucet', component: Faucet },
+    { path: '/ecosystem', component: Ecosystem },
   ],
 });
 
