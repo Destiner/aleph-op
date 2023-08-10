@@ -57,6 +57,7 @@ export { Option };
 
 .list {
   display: flex;
+  width: 100%;
   padding: 4px;
   border-radius: var(--border-radius-big);
   background: var(--color-bg-tertiary);
@@ -64,7 +65,7 @@ export { Option };
 }
 
 .item {
-  width: 100px;
+  flex: 1;
   padding: 4px 8px;
   border: none;
   border-radius: var(--border-radius-medium);
