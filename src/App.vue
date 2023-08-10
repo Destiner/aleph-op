@@ -35,7 +35,7 @@ onMounted(() => {
 <style>
 :root {
   --color-bg-primary: hsl(0deg 0% 100%);
-  --color-bg-secondary: hsl(0deg 0% 98%);
+  --color-bg-secondary: hsl(0deg 0% 96%);
   --color-bg-tertiary: hsl(0deg 0% 92%);
   --color-text-primary: hsl(0deg 0% 5%);
   --color-text-secondary-hsl: 240deg 5% 34%;
