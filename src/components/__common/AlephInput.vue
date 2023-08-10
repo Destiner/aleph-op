@@ -88,7 +88,7 @@ input {
   width: 100%;
   margin: 0;
   padding: 4px 8px;
-  border: 1px solid var(--color-border-primary);
+  border: 1px solid var(--color-border-secondary);
   border-radius: var(--border-radius-medium);
   outline: none;
   background: var(--color-bg-primary);
@@ -98,7 +98,7 @@ input {
 }
 
 input:focus {
-  border: 1px solid var(--color-border-secondary);
+  border: 1px solid var(--color-border-primary);
 }
 
 input:disabled {
