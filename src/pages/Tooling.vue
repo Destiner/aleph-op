@@ -65,7 +65,7 @@ const categoryTools = computed(() => {
   });
 });
 
-const selectedCategory = ref<Category>('development');
+const selectedCategory = ref<Category>('provider');
 </script>
 
 <style scoped>
