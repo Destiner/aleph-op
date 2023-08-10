@@ -221,6 +221,7 @@ const isFormValid = computed(() => {
 
 .input-wrapper {
   display: flex;
+  gap: var(--spacing-small);
   flex-direction: column;
 }
 
