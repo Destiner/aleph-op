@@ -33,7 +33,7 @@ defineProps<{
   flex-direction: column;
   width: 100%;
   padding: 20px 24px;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.25s ease-in-out;
   border: 1px solid var(--color-border-secondary);
   border-radius: var(--border-radius-large);
   cursor: pointer;
@@ -52,6 +52,12 @@ defineProps<{
 .icon {
   width: 48px;
   height: 48px;
+  transition: all 0.25s ease-in-out;
+  opacity: 0.7;
+}
+
+.card:hover .icon {
+  opacity: 1;
 }
 
 .title {
