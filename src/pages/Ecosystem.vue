@@ -35,7 +35,7 @@ import { formatCategory } from '@/utils/ecosystem/formatting';
 
 const { meta } = config;
 useHead({
-  title: `Tooling | ${meta.title}`,
+  title: `Ecosystem | ${meta.title}`,
 });
 const { apps } = useApps();
 

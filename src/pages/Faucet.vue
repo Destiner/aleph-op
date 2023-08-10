@@ -54,6 +54,7 @@
 </template>
 
 <script setup lang="ts">
+import { useHead } from '@vueuse/head';
 import { isAddress } from 'viem';
 import { computed, ref } from 'vue';
 
@@ -62,9 +63,14 @@ import ArrowDown from '@/components/__common/icon/ArrowDown.vue';
 import AlephPage from '@/components/_app/AlephPage.vue';
 import ChainIcon from '@/components/bridge/ChainIcon.vue';
 import useChain from '@/composables/useChain';
+import config from '@/config';
 import { Chain } from '@/utils/chains';
 
 const { id: chainId } = useChain();
+const { meta } = config;
+useHead({
+  title: `Faucet | ${meta.title}`,
+});
 
 const amountValue = ref('');
 const addressValue = ref('');

@@ -72,6 +72,7 @@
 </template>
 
 <script setup lang="ts">
+import { useHead } from '@vueuse/head';
 import { computed, ref } from 'vue';
 
 import AlephLabel from '@/components/__common/AlephLabel.vue';
@@ -82,9 +83,14 @@ import ArrowDown from '@/components/__common/icon/ArrowDown.vue';
 import AlephPage from '@/components/_app/AlephPage.vue';
 import ChainIcon from '@/components/bridge/ChainIcon.vue';
 import useChain from '@/composables/useChain';
+import config from '@/config';
 import { ETHEREUM, Chain } from '@/utils/chains';
 
 const { id: chainId } = useChain();
+const { meta } = config;
+useHead({
+  title: `Bridge | ${meta.title}`,
+});
 
 const MAINNET = 'mainnet';
 const TESTNET = 'testnet';
