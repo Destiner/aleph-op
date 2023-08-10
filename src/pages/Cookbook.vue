@@ -351,3 +351,15 @@ const contentSections = computed<ContentSection[]>(() => [
   },
 ]);
 </script>
+
+<style scoped>
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+h1 {
+  margin: 0;
+}
+</style>
