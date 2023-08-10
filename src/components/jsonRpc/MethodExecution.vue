@@ -22,6 +22,7 @@
         compact
       />
       <button
+        v-if="isExecutable"
         class="execute-button"
         :disabled="!isValid || isLoading"
         @click="execute"
@@ -209,6 +210,8 @@ const request = computed(() =>
     formattedInputs.value,
   ),
 );
+
+const isExecutable = computed(() => props.method.type !== 'optimism');
 
 async function execute(): Promise<void> {
   emit('update:is-error', false);
