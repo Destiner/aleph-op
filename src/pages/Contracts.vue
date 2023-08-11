@@ -40,7 +40,7 @@
     <template #details>
       <ExecutionPanel
         v-if="activeContract && activeFragment"
-        :inputs="inputs"
+        :inputs="activeFragmentInputs"
         :address="address"
         :fragment="activeFragment"
       />
@@ -123,6 +123,13 @@ function handleFragmentSelect(fragment: Fragment): void {
 
 const activeContract = ref(contracts.value[0]);
 const activeFragment = ref<Fragment | null>(null);
+const activeFragmentInputs = computed<unknown[]>(() => {
+  if (!activeFragment.value) {
+    return [];
+  }
+  const index = fragments.value.indexOf(activeFragment.value);
+  return inputs.value[index];
+});
 const address = ref<string>('');
 const inputs = ref<unknown[][]>([]);
 watch(
@@ -147,24 +154,35 @@ watch(
   },
 );
 
+const fragments = computed<Fragment[]>(() => {
+  const contract = activeContract.value;
+  if (!contract) {
+    return [];
+  }
+  return getContractFragments(contract);
+});
+
+function getContractFragments(contract: Contract): Fragment[] {
+  return [
+    ...getConstructors(contract),
+    ...getFunctions(contract),
+    ...getEvents(contract),
+    ...getReceives(contract),
+  ];
+}
+
 function resetInputs(contract: Contract): void {
   const newInputs: unknown[][] = [];
-  getConstructors(contract).forEach((con) => {
-    const conInputs = con.inputs.map((input) => getDefaultInputValue(input));
-    newInputs.push(conInputs);
-  });
-  getFunctions(contract).forEach((func) => {
-    const funcInputs = func.inputs.map((input) => getDefaultInputValue(input));
-    newInputs.push(funcInputs);
-  });
-  getEvents(contract).forEach((event) => {
-    const eventInputs = event.inputs.map((input) =>
+  const fragments = getContractFragments(contract);
+  fragments.forEach((fragment) => {
+    if (fragment.type === 'receive') {
+      newInputs.push([]);
+      return;
+    }
+    const fragmentInputs = fragment.inputs.map((input) =>
       getDefaultInputValue(input),
     );
-    newInputs.push(eventInputs);
-  });
-  getReceives(contract).forEach(() => {
-    newInputs.push([]);
+    newInputs.push(fragmentInputs);
   });
   inputs.value = newInputs;
 }
