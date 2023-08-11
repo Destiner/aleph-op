@@ -4,6 +4,7 @@
       <slot name="toc" />
     </nav>
     <div class="main">
+      <h1 v-if="title">{{ title }}</h1>
       <slot />
     </div>
     <nav class="sidebar-outline">
@@ -14,6 +15,12 @@
     </div>
   </main>
 </template>
+
+<script setup lang="ts">
+defineProps<{
+  title?: string;
+}>();
+</script>
 
 <style scoped>
 .page {
@@ -44,9 +51,19 @@
 }
 
 .main {
+  display: flex;
   flex: 3;
+  flex-direction: column;
   padding: 30px;
   overflow-y: auto;
+  gap: var(--spacing-normal);
+}
+
+h1 {
+  margin: 0;
+  font-size: var(--font-size-extra-large);
+  font-weight: 200;
+  letter-spacing: -1.75px;
 }
 
 .sidebar-outline:has(*) {
