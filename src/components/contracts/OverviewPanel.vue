@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <h1 class="title">{{ contract.name }}</h1>
+    <h1>{{ contract.name }}</h1>
     <div class="description">
       <MarkdownView
         v-if="contract.description"
@@ -103,13 +103,6 @@ function handleFragmentSelect(fragment: Fragment): void {
   display: flex;
   gap: var(--spacing-normal);
   flex-direction: column;
-}
-
-.title {
-  margin: 0;
-  font-size: var(--font-size-extra-large);
-  font-weight: bold;
-  letter-spacing: -0.5px;
 }
 
 .description {

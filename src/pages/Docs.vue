@@ -281,8 +281,4 @@ const contentSections = computed<ContentSection[]>(() => [
   flex-direction: column;
   gap: 16px;
 }
-
-h1 {
-  margin: 0;
-}
 </style>
