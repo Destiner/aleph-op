@@ -59,7 +59,7 @@ const fragmentName = computed(() => {
 });
 const fragmentInputs = computed(() => {
   if (props.fragment.type === 'function') {
-    return props.fragment.outputs;
+    return props.fragment.inputs;
   } else {
     return [];
   }
