@@ -1,5 +1,5 @@
 <template>
-  <AlephPage>
+  <AlephPage :title="pageTitle">
     <template #toc>
       <nav class="methods">
         <AlephModal
@@ -49,7 +49,7 @@
 <script setup lang="ts">
 import { useBreakpoints, useUrlSearchParams } from '@vueuse/core';
 import { useHead } from '@vueuse/head';
-import { onMounted, ref, watch } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 
 import AlephModal from '@/components/__common/AlephModal.vue';
 import IconChevronDown from '@/components/__common/icon/ChevronDown.vue';
@@ -71,6 +71,13 @@ useHead({
 const isPhone = breakpoints.smaller('tablet');
 const params = useUrlSearchParams('history');
 const { methods } = useMethods();
+
+const pageTitle = computed<string | undefined>(() => {
+  if (!selectedMethod.value) {
+    return undefined;
+  }
+  return `${selectedMethod.value.name}`;
+});
 
 onMounted(() => {
   const method = methods.value.find((method) => method.id === params.method);

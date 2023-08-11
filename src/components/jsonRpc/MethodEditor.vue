@@ -1,10 +1,7 @@
 <template>
   <div class="header">
-    <h1>{{ method.name }}</h1>
-    <div class="meta">
-      <div class="type">{{ method.type }}</div>
-      <div class="id">{{ method.id }}</div>
-    </div>
+    <div class="type">{{ method.type }}</div>
+    <div class="id">{{ method.id }}</div>
   </div>
   <div class="description">
     {{ method.description }}
@@ -42,12 +39,6 @@ function handleUpdate(value: unknown[]): void {
 
 <style scoped>
 .header {
-  display: flex;
-  gap: var(--spacing-normal);
-  flex-direction: column;
-}
-
-.meta {
   display: flex;
   gap: var(--spacing-small);
   align-items: center;

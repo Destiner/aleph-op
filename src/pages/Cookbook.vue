@@ -1,15 +1,12 @@
 <template>
-  <AlephPage>
+  <AlephPage :title="activeGuide.title">
     <template #toc>
       <TableOfContents
         :sections="sections"
         :active="active"
       />
     </template>
-    <div class="wrapper">
-      <h1>{{ activeGuide.title }}</h1>
-      <MarkdownView :source="activeGuide.content" />
-    </div>
+    <MarkdownView :source="activeGuide.content" />
     <template #outline>
       <ContentOutline :sections="contentSections" />
     </template>
@@ -351,11 +348,3 @@ const contentSections = computed<ContentSection[]>(() => [
   },
 ]);
 </script>
-
-<style scoped>
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-</style>

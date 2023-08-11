@@ -1,6 +1,5 @@
 <template>
   <div class="header">
-    <h1>{{ contract.name }}</h1>
     <div class="description">
       <MarkdownView
         v-if="contract.description"

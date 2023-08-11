@@ -1,5 +1,5 @@
 <template>
-  <AlephPage>
+  <AlephPage :title="pageTitle">
     <template #toc>
       <NavSidebarModal
         v-if="isPhone"
@@ -57,7 +57,7 @@
 <script setup lang="ts">
 import { useBreakpoints } from '@vueuse/core';
 import { useHead } from '@vueuse/head';
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 import IconChevronDown from '@/components/__common/icon/ChevronDown.vue';
 import AlephPage from '@/components/_app/AlephPage.vue';
@@ -94,6 +94,13 @@ const breakpoints = useBreakpoints({
   tablet: 640,
 });
 const isPhone = breakpoints.smaller('tablet');
+
+const pageTitle = computed<string | undefined>(() => {
+  if (!activeContract.value) {
+    return undefined;
+  }
+  return `${activeContract.value.name}`;
+});
 
 const isSidebarModalOpen = ref(false);
 function handleSidebarModalClose(): void {
