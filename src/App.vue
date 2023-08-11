@@ -77,13 +77,6 @@ body {
   font-family: var(--font-sans);
 }
 
-h1 {
-  margin: 0;
-  font-size: var(--font-size-extra-large);
-  font-weight: 200;
-  letter-spacing: -1.75px;
-}
-
 a {
   color: inherit;
   text-decoration: none;
