@@ -11,6 +11,7 @@
           <div class="heading-subtitle">Developer Platform</div>
         </div>
       </div>
+      <ButtonWallet />
     </div>
     <div class="bottom">
       <div class="nav">
@@ -44,6 +45,7 @@
 </template>
 
 <script setup lang="ts">
+import ButtonWallet from '@/components/__common/ButtonWallet.vue';
 import IconAtom from '@/components/__common/icon/Atom.vue';
 import IconBook from '@/components/__common/icon/Book.vue';
 import IconChef from '@/components/__common/icon/Chef.vue';
