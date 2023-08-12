@@ -113,6 +113,21 @@ function getChainData(chainId: Chain): ChainData {
   }
 }
 
+function getTestnet(mainnet: Chain): Chain {
+  switch (mainnet) {
+    case ETHEREUM:
+      return GOERLI;
+    case OPTIMISM:
+      return OPTIMISM_GOERLI;
+    case BASE:
+      return BASE_GOERLI;
+    case ZORA:
+      return ZORA_TESTNET;
+    default:
+      throw new Error(`No testnet for ${mainnet}`);
+  }
+}
+
 function isTestnet(chainId: Chain): boolean {
   // Using "switch case" here to make sure we don't miss any chain
   switch (chainId) {
@@ -149,5 +164,6 @@ export {
   getChainName,
   getEndpointUrl,
   getExplorerUrl,
+  getTestnet,
   isTestnet,
 };
