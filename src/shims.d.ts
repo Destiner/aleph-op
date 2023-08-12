@@ -4,6 +4,10 @@ interface ImportMeta {
   };
 }
 
+interface Window {
+  ethereum?: object;
+}
+
 declare module '*.vue' {
   import { ComponentOptions } from 'vue';
 
