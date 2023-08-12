@@ -64,7 +64,12 @@
           </div>
         </div>
         <div>
-          <button :class="{ disabled: !isFormValid }">Send</button>
+          <button
+            :class="{ disabled: !isFormValid }"
+            @click="send"
+          >
+            Send
+          </button>
         </div>
       </div>
     </div>
@@ -73,8 +78,11 @@
 
 <script setup lang="ts">
 import { useHead } from '@vueuse/head';
+import { getNetwork, switchNetwork, writeContract } from '@wagmi/core';
+import { Address, parseEther } from 'viem';
 import { computed, ref } from 'vue';
 
+import l1BridgeAbi from '@/abi/L1StandardBridge';
 import AlephLabel from '@/components/__common/AlephLabel.vue';
 import AlephTabs, {
   Option as TabOption,
@@ -84,7 +92,14 @@ import AlephPage from '@/components/_app/AlephPage.vue';
 import ChainIcon from '@/components/bridge/ChainIcon.vue';
 import useChain from '@/composables/useChain';
 import config from '@/config';
-import { ETHEREUM, Chain } from '@/utils/chains';
+import {
+  ETHEREUM,
+  GOERLI,
+  OPTIMISM,
+  OPTIMISM_GOERLI,
+  Chain,
+  getTestnet,
+} from '@/utils/chains';
 
 const { id: chainId } = useChain();
 const { meta } = config;
@@ -129,9 +144,17 @@ function handleAmountOutInput(e: Event): void {
 const isL1ToL2 = ref(true);
 const sourceChain = computed<Chain>(() => {
   if (isL1ToL2.value) {
-    return ETHEREUM;
+    if (activeTab.value === MAINNET) {
+      return ETHEREUM;
+    } else {
+      return getTestnet(ETHEREUM);
+    }
   } else {
-    return chainId.value;
+    if (activeTab.value === MAINNET) {
+      return chainId.value;
+    } else {
+      return getTestnet(chainId.value);
+    }
   }
 });
 const sourceAssetLabel = computed(() => {
@@ -143,9 +166,17 @@ const sourceAssetLabel = computed(() => {
 });
 const targetChain = computed<Chain>(() => {
   if (isL1ToL2.value) {
-    return chainId.value;
+    if (activeTab.value === MAINNET) {
+      return chainId.value;
+    } else {
+      return getTestnet(chainId.value);
+    }
   } else {
-    return ETHEREUM;
+    if (activeTab.value === MAINNET) {
+      return ETHEREUM;
+    } else {
+      return getTestnet(ETHEREUM);
+    }
   }
 });
 const targetAssetLabel = computed(() => {
@@ -166,6 +197,44 @@ const isFormValid = computed(() => {
     amountInValue.value !== '0' &&
     amountOutValue.value !== '0'
   );
+});
+
+async function send(): Promise<void> {
+  const address = bridgeProxyAddress.value;
+  console.log('send', sourceChain.value, targetChain.value, address);
+  if (!address) {
+    return;
+  }
+
+  const walletNetwork = await getNetwork();
+  if (walletNetwork.chain?.id !== sourceChain.value) {
+    await switchNetwork({
+      chainId: sourceChain.value,
+    });
+  }
+  const amountIn = parseEther(amountInValue.value);
+  await writeContract({
+    address,
+    abi: l1BridgeAbi,
+    functionName: 'depositETH',
+    args: [200000, '0x'],
+    value: amountIn,
+  });
+}
+
+const bridgeProxyAddress = computed<Address | null>(() => {
+  switch (sourceChain.value) {
+    case ETHEREUM:
+      return '0x99C9fc46f92E8a1c0deC1b1747d010903E884bE1' as Address;
+    case GOERLI:
+      return '0x636Af16bf2f682dD3109e60102b8E1A089FedAa8' as Address;
+    case OPTIMISM:
+      return '0x4200000000000000000000000000000000000010' as Address;
+    case OPTIMISM_GOERLI:
+      return '0x4200000000000000000000000000000000000010' as Address;
+    default:
+      return null;
+  }
 });
 </script>
 
