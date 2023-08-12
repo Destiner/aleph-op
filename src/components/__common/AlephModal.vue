@@ -88,7 +88,7 @@ function handleCrossClick(): void {
   position: fixed;
   inset: 0;
   flex-direction: column;
-  align-items: end;
+  align-items: center;
   justify-content: center;
 }
 
