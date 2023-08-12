@@ -9,10 +9,33 @@
 import '@fontsource/inter/200.css';
 import '@fontsource/inter/400.css';
 import '@fontsource/inter/700.css';
+import { createConfig, configureChains } from '@wagmi/core';
+import { publicProvider } from '@wagmi/core/providers/public';
 import { computed, onMounted } from 'vue';
 
 import AlephHeader from '@/components/_app/AlephHeader.vue';
+import useChain from '@/composables/useChain';
 import config from '@/config';
+import { Chain, ETHEREUM, getChainData, getTestnet } from '@/utils/chains';
+
+const { id: chainId } = useChain();
+
+const chains: Chain[] = [
+  ETHEREUM,
+  getTestnet(ETHEREUM),
+  chainId.value,
+  getTestnet(chainId.value),
+];
+const chainData = chains.map((chain) => getChainData(chain));
+const { publicClient, webSocketPublicClient } = configureChains(chainData, [
+  publicProvider(),
+]);
+
+createConfig({
+  autoConnect: true,
+  publicClient,
+  webSocketPublicClient,
+});
 
 const styleProperties = computed<Record<string, string>>(() => {
   return {
