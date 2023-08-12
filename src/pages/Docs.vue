@@ -2,8 +2,8 @@
   <AlephPage :title="activeDoc.title">
     <template #toc>
       <TableOfContents
+        v-model:active="active"
         :sections="sections"
-        :active="active"
       />
     </template>
     <MarkdownView :source="activeDoc.content" />
@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import { useHead } from '@vueuse/head';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 
 import MarkdownView from '@/components/__common/MarkdownView.vue';
 import ContentOutline, {
@@ -23,6 +23,7 @@ import ContentOutline, {
 } from '@/components/__common/nav/ContentOutline.vue';
 import TableOfContents, {
   Section,
+  Selection,
 } from '@/components/__common/nav/TableOfContents.vue';
 import AlephPage from '@/components/_app/AlephPage.vue';
 import config from '@/config';
@@ -45,10 +46,10 @@ const sections = computed<Section[]>(() =>
   })),
 );
 
-const active = computed(() => ({
+const active = ref<Selection>({
   sectionIndex: 0,
-  pageIndex: 1,
-}));
+  pageIndex: 0,
+});
 
 const activeDoc = computed(() => {
   const section = docs[active.value.sectionIndex];
