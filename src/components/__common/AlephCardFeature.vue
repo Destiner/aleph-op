@@ -40,6 +40,7 @@ defineProps<{
 }
 
 .card:hover {
+  transform: scale(1.02);
   border-color: var(--color-accent);
 }
 
