@@ -33,6 +33,14 @@ defineProps<{
   margin: 0;
 }
 
+.view :deep(a) {
+  color: var(--color-accent);
+}
+
+.view :deep(a:hover) {
+  opacity: 0.75;
+}
+
 .view :deep(code) {
   padding: 2px;
   border-radius: 4px;
