@@ -16,6 +16,7 @@
               active.sectionIndex === sectionIndex &&
               active.pageIndex === pageIndex,
           }"
+          @click="select(sectionIndex, pageIndex)"
         >
           {{ page.title }}
         </div>
@@ -29,6 +30,17 @@ defineProps<{
   sections: Section[];
   active: Selection;
 }>();
+
+const emit = defineEmits<{
+  'update:active': [selection: Selection];
+}>();
+
+function select(sectionIndex: number, pageIndex: number): void {
+  emit('update:active', {
+    sectionIndex,
+    pageIndex,
+  });
+}
 </script>
 
 <script lang="ts">
@@ -48,7 +60,7 @@ interface Page {
   path: string;
 }
 
-export { Section, Page };
+export { Selection, Section, Page };
 </script>
 
 <style scoped>
