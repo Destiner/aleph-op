@@ -2,12 +2,15 @@
   <header>
     <div class="top">
       <div class="brand">
-        <img
-          :src="logoPath"
+        <ChainIcon
+          :chain="chainId"
           class="icon"
         />
         <div class="heading">
-          <div class="heading-title">{{ title }}</div>
+          <ChainSelector
+            :model-value="chainId"
+            @update:model-value="handleChainUpdate"
+          />
           <div class="heading-subtitle">Developer Platform</div>
         </div>
       </div>
@@ -45,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 
 import ButtonWallet from '@/components/__common/ButtonWallet.vue';
 import IconAtom from '@/components/__common/icon/Atom.vue';
@@ -57,36 +60,16 @@ import IconFileJson from '@/components/__common/icon/FileJson.vue';
 import IconHammer from '@/components/__common/icon/Hammer.vue';
 import IconLink from '@/components/__common/icon/Link.vue';
 import useChain from '@/composables/useChain';
-import {
-  OPTIMISM,
-  BASE,
-  ZORA,
-  MODE_SEPOLIA,
-  Chain,
-  getChainName,
-} from '@/utils/chains';
+import { Chain } from '@/utils/chains';
 
-const { id: chainId } = useChain();
+import ChainIcon from './ChainIcon.vue';
+import ChainSelector from './ChainSelector.vue';
 
-const title = computed(() => getChainName(chainId.value));
-const logoPath = computed(() => {
-  function getFileName(chain: Chain): string {
-    switch (chain) {
-      case OPTIMISM:
-        return 'optimism';
-      case BASE:
-        return 'base';
-      case ZORA:
-        return 'zora';
-      case MODE_SEPOLIA:
-        return 'mode';
-      default:
-        return 'ethereum';
-    }
-  }
+const { id: chainId, setChain } = useChain();
 
-  return `/assets/icons/${getFileName(chainId.value)}.svg`;
-});
+function handleChainUpdate(chain: Chain): void {
+  setChain(chain);
+}
 </script>
 
 <style scoped>
@@ -117,6 +100,7 @@ header {
 .heading {
   display: flex;
   gap: var(--spacing-normal);
+  align-items: center;
 }
 
 .heading-title {
