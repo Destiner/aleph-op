@@ -185,7 +185,8 @@ export { Option };
 
 .item {
   display: flex;
-  gap: var(--spacing-small);
+  gap: var(--spacing-normal);
+  align-items: center;
   padding: 4px 12px;
   overflow: hidden;
   border-radius: var(--border-radius-medium);
