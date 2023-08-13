@@ -18,6 +18,7 @@ const BASE = 8453;
 const BASE_GOERLI = 84531;
 const ZORA = 7777777;
 const ZORA_TESTNET = 999;
+const MODE_SEPOLIA = 919;
 
 type Chain =
   | typeof ETHEREUM
@@ -27,7 +28,8 @@ type Chain =
   | typeof BASE
   | typeof BASE_GOERLI
   | typeof ZORA
-  | typeof ZORA_TESTNET;
+  | typeof ZORA_TESTNET
+  | typeof MODE_SEPOLIA;
 
 function getChainName(chainId: Chain): string {
   switch (chainId) {
@@ -47,6 +49,8 @@ function getChainName(chainId: Chain): string {
       return zora.name;
     case ZORA_TESTNET:
       return zoraTestnet.name;
+    case MODE_SEPOLIA:
+      return modeSepolia.name;
   }
 }
 
@@ -68,6 +72,8 @@ function getExplorerUrl(chainId: Chain): string {
       return zora.blockExplorers.default.url;
     case ZORA_TESTNET:
       return zoraTestnet.blockExplorers.default.url;
+    case MODE_SEPOLIA:
+      return modeSepolia.blockExplorers.default.url;
   }
 }
 
@@ -89,6 +95,8 @@ function getEndpointUrl(chainId: Chain, apiKey: string): string {
       return zora.rpcUrls.public.http[0];
     case ZORA_TESTNET:
       return zoraTestnet.rpcUrls.public.http[0];
+    case MODE_SEPOLIA:
+      return modeSepolia.rpcUrls.public.http[0];
   }
 }
 
@@ -110,6 +118,8 @@ function getChainData(chainId: Chain): ChainData {
       return zora;
     case ZORA_TESTNET:
       return zoraTestnet;
+    case MODE_SEPOLIA:
+      return modeSepolia;
   }
 }
 
@@ -123,6 +133,8 @@ function getTestnet(mainnet: Chain): Chain {
       return BASE_GOERLI;
     case ZORA:
       return ZORA_TESTNET;
+    case MODE_SEPOLIA:
+      return MODE_SEPOLIA;
     default:
       throw new Error(`No testnet for ${mainnet}`);
   }
@@ -147,8 +159,32 @@ function isTestnet(chainId: Chain): boolean {
       return false;
     case ZORA_TESTNET:
       return true;
+    case MODE_SEPOLIA:
+      return true;
   }
 }
+
+const modeSepolia = {
+  id: 919,
+  name: 'Mode Testnet',
+  network: 'mode_testnet',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'Ethereum',
+    symbol: 'ETH',
+  },
+  rpcUrls: {
+    public: { http: ['https://sepolia.mode.network'] },
+    default: { http: ['https://sepolia.mode.network'] },
+  },
+  blockExplorers: {
+    default: {
+      name: 'Sepolia Explorer',
+      url: 'https://sepolia.explorer.mode.network',
+    },
+  },
+  contracts: {},
+} as const satisfies ChainData;
 
 export {
   ETHEREUM,
@@ -159,6 +195,7 @@ export {
   BASE_GOERLI,
   ZORA,
   ZORA_TESTNET,
+  MODE_SEPOLIA,
   Chain,
   getChainData,
   getChainName,
