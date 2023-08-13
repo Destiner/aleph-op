@@ -48,8 +48,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
-
 import ButtonWallet from '@/components/__common/ButtonWallet.vue';
 import IconAtom from '@/components/__common/icon/Atom.vue';
 import IconBook from '@/components/__common/icon/Book.vue';
