@@ -11,7 +11,7 @@ import '@fontsource/inter/400.css';
 import '@fontsource/inter/700.css';
 import { createConfig, configureChains } from '@wagmi/core';
 import { publicProvider } from '@wagmi/core/providers/public';
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, watch } from 'vue';
 
 import AlephHeader from '@/components/_app/AlephHeader.vue';
 import useChain from '@/composables/useChain';
@@ -53,9 +53,27 @@ const styleProperties = computed<Record<string, string>>(() => {
       case BASE:
         return '226deg 91% 55%';
       case ZORA:
-        return '0deg 0% 100%';
+        return '0deg 0% 0%';
       case MODE_SEPOLIA:
         return '67deg 60% 50%';
+      default:
+        return '0deg 0% 100%';
+    }
+  }
+
+  function getBgInvertedColor(chain: Chain): string {
+    switch (chain) {
+      case ZORA:
+        return '0deg 0% 100%';
+      default:
+        return '0deg 0% 0%';
+    }
+  }
+
+  function getTextInvertedColor(chain: Chain): string {
+    switch (chain) {
+      case ZORA:
+        return '0deg 0% 0%';
       default:
         return '0deg 0% 100%';
     }
@@ -63,14 +81,20 @@ const styleProperties = computed<Record<string, string>>(() => {
   return {
     '--color-accent-hsl': getAccentColor(chainId.value),
     '--color-accent': 'hsl(var(--color-accent-hsl))',
-    '--color-bg-inverted-hsl': '0deg 0% 0%',
+    '--color-bg-inverted-hsl': getBgInvertedColor(chainId.value),
     '--color-bg-inverted': 'hsl(var(--color-bg-inverted-hsl))',
-    '--color-text-inverted-hsl': '0deg 0% 100%',
+    '--color-text-inverted-hsl': getTextInvertedColor(chainId.value),
     '--color-text-inverted': 'hsl(var(--color-text-inverted-hsl))',
   };
 });
 
 onMounted(() => {
+  Object.entries(styleProperties.value).forEach(([key, value]) => {
+    document.documentElement.style.setProperty(key, value);
+  });
+});
+
+watch(chainId, () => {
   Object.entries(styleProperties.value).forEach(([key, value]) => {
     document.documentElement.style.setProperty(key, value);
   });
