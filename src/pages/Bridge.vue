@@ -97,6 +97,11 @@ import {
   GOERLI,
   OPTIMISM,
   OPTIMISM_GOERLI,
+  BASE,
+  BASE_GOERLI,
+  ZORA,
+  ZORA_TESTNET,
+  MODE_SEPOLIA,
   Chain,
   getTestnet,
 } from '@/utils/chains';
@@ -231,6 +236,16 @@ const bridgeProxyAddress = computed<Address | null>(() => {
     case OPTIMISM:
       return '0x4200000000000000000000000000000000000010' as Address;
     case OPTIMISM_GOERLI:
+      return '0x4200000000000000000000000000000000000010' as Address;
+    case BASE:
+      return '0x4200000000000000000000000000000000000010' as Address;
+    case BASE_GOERLI:
+      return '0x4200000000000000000000000000000000000010' as Address;
+    case ZORA:
+      return '0xbF6acaF315477b15D638bf4d91eA48FA79b58335' as Address;
+    case ZORA_TESTNET:
+      return '0x39CCDe9769d52d61189AB799d91665A11b5f3464' as Address;
+    case MODE_SEPOLIA:
       return '0x4200000000000000000000000000000000000010' as Address;
     default:
       return null;

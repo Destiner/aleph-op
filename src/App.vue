@@ -15,8 +15,16 @@ import { computed, onMounted } from 'vue';
 
 import AlephHeader from '@/components/_app/AlephHeader.vue';
 import useChain from '@/composables/useChain';
-import config from '@/config';
-import { Chain, ETHEREUM, getChainData, getTestnet } from '@/utils/chains';
+import {
+  Chain,
+  ETHEREUM,
+  OPTIMISM,
+  BASE,
+  ZORA,
+  MODE_SEPOLIA,
+  getChainData,
+  getTestnet,
+} from '@/utils/chains';
 
 const { id: chainId } = useChain();
 
@@ -38,12 +46,26 @@ createConfig({
 });
 
 const styleProperties = computed<Record<string, string>>(() => {
+  function getAccentColor(chain: Chain): string {
+    switch (chain) {
+      case OPTIMISM:
+        return '1deg 81% 55%';
+      case BASE:
+        return '226deg 91% 55%';
+      case ZORA:
+        return '0deg 0% 100%';
+      case MODE_SEPOLIA:
+        return '67deg 60% 50%';
+      default:
+        return '0deg 0% 100%';
+    }
+  }
   return {
-    '--color-accent-hsl': config.styling.accent,
+    '--color-accent-hsl': getAccentColor(chainId.value),
     '--color-accent': 'hsl(var(--color-accent-hsl))',
-    '--color-bg-inverted-hsl': config.styling.background.inverted,
+    '--color-bg-inverted-hsl': '0deg 0% 0%',
     '--color-bg-inverted': 'hsl(var(--color-bg-inverted-hsl))',
-    '--color-text-inverted-hsl': config.styling.text.inverted,
+    '--color-text-inverted-hsl': '0deg 0% 100%',
     '--color-text-inverted': 'hsl(var(--color-text-inverted-hsl))',
   };
 });

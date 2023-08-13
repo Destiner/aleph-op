@@ -3,11 +3,11 @@
     <div class="top">
       <div class="brand">
         <img
-          :src="logoSvg"
+          :src="logoPath"
           class="icon"
         />
         <div class="heading">
-          <div class="heading-title">{{ config.meta.title }}</div>
+          <div class="heading-title">{{ title }}</div>
           <div class="heading-subtitle">Developer Platform</div>
         </div>
       </div>
@@ -45,6 +45,8 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
+
 import ButtonWallet from '@/components/__common/ButtonWallet.vue';
 import IconAtom from '@/components/__common/icon/Atom.vue';
 import IconBook from '@/components/__common/icon/Book.vue';
@@ -54,8 +56,37 @@ import IconFileCode from '@/components/__common/icon/FileCode.vue';
 import IconFileJson from '@/components/__common/icon/FileJson.vue';
 import IconHammer from '@/components/__common/icon/Hammer.vue';
 import IconLink from '@/components/__common/icon/Link.vue';
-import config from '@/config';
-import logoSvg from '@/config/logo.svg';
+import useChain from '@/composables/useChain';
+import {
+  OPTIMISM,
+  BASE,
+  ZORA,
+  MODE_SEPOLIA,
+  Chain,
+  getChainName,
+} from '@/utils/chains';
+
+const { id: chainId } = useChain();
+
+const title = computed(() => getChainName(chainId.value));
+const logoPath = computed(() => {
+  function getFileName(chain: Chain): string {
+    switch (chain) {
+      case OPTIMISM:
+        return 'optimism';
+      case BASE:
+        return 'base';
+      case ZORA:
+        return 'zora';
+      case MODE_SEPOLIA:
+        return 'mode';
+      default:
+        return 'ethereum';
+    }
+  }
+
+  return `/assets/icons/${getFileName(chainId.value)}.svg`;
+});
 </script>
 
 <style scoped>

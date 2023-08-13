@@ -9,6 +9,7 @@ import {
   BASE_GOERLI,
   ZORA,
   ZORA_TESTNET,
+  MODE_SEPOLIA,
   Chain,
 } from '@/utils/chains';
 import {
@@ -100,6 +101,7 @@ function getDefaults(chain: Chain | null): Defaults {
     [BASE_GOERLI]: EMPTY_HASH,
     [ZORA]: EMPTY_HASH,
     [ZORA_TESTNET]: EMPTY_HASH,
+    [MODE_SEPOLIA]: EMPTY_HASH,
   };
   const transactionHashMap: Record<Chain, string> = {
     [ETHEREUM]:
@@ -111,6 +113,7 @@ function getDefaults(chain: Chain | null): Defaults {
     [BASE_GOERLI]: EMPTY_HASH,
     [ZORA]: EMPTY_HASH,
     [ZORA_TESTNET]: EMPTY_HASH,
+    [MODE_SEPOLIA]: EMPTY_HASH,
   };
   const defaultTransactionInput =
     '0x02f8740181948459682f0085275c2c9f8b82520894885885521990b53fd00556c143ea056dd2f62a128808cc0c47d9477f9080c080a037437ba52140dbac1d7dc65cdb58531e038930c82314817f91cb8d8ea36a2bd0a001e134479d567b8595d77f61106cad34e62ed356d6971bc08fe0363a0696dd94';
@@ -126,6 +129,7 @@ function getDefaults(chain: Chain | null): Defaults {
     [BASE_GOERLI]: EMPTY_ADDRESS,
     [ZORA]: EMPTY_ADDRESS,
     [ZORA_TESTNET]: EMPTY_ADDRESS,
+    [MODE_SEPOLIA]: EMPTY_ADDRESS,
   };
   const definedChain = chain || ETHEREUM;
 
