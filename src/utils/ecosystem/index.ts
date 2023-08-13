@@ -3,6 +3,7 @@ import {
   OPTIMISM_GOERLI,
   BASE,
   BASE_GOERLI,
+  MODE_SEPOLIA,
   Chain,
 } from '@/utils/chains';
 
@@ -38,7 +39,7 @@ const APPS: AppWithChain[] = [
     iconPath: '/assets/icons/uniswap.svg',
     url: 'https://uniswap.org',
     category: 'defi',
-    chains: [OPTIMISM, OPTIMISM_GOERLI, BASE, BASE_GOERLI],
+    chains: [OPTIMISM, OPTIMISM_GOERLI, BASE, BASE_GOERLI, MODE_SEPOLIA],
   },
   {
     name: 'Velodrome',
